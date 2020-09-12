@@ -1,0 +1,85 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "presentation": {
+        "panel": "new"
+    },
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "prosv5 make",
+            "problemMatcher": {
+                "owner": "prosv5",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Upload",
+            "type": "shell",
+            "command": "prosv5 upload",
+            "problemMatcher": {
+                "owner": "prosv5",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": "build"
+        },
+        {
+            "label": "Run Terminal",
+            "type": "shell",
+            "command": "prosv5 terminal",
+            "problemMatcher": {
+                "owner": "prosv5",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+            "group": "build"
+        },
+        {
+            "label": "Upload and Run Terminal",
+            "dependsOn": ["Upload", "Run Terminal"],
+            "dependsOrder": "sequence",
+            "group": "build",
+            "problemMatcher": {
+                "owner": "prosv5",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+        }
+    ]
+}
