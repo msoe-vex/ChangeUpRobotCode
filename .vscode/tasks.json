@@ -7,17 +7,17 @@
     },
     "tasks": [
         {
-            "label": "Build Large Robot",
+            "label": "Build",
             "type": "shell",
             "command": "prosv5 make",
             "options": {
-                "cwd": "${workspaceFolder}/LargeRobot"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": {
                 "owner": "prosv5",
                 "fileLocation": [
                     "relative",
-                    "${workspaceRoot}/LargeRobot"
+                    "${workspaceRoot}"
                 ],
                 "pattern": {
                     "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
@@ -34,84 +34,12 @@
             }
         },
         {
-            "label": "Upload Large Robot",
+            "label": "Upload",
             "type": "shell",
             "command": "prosv5 upload",
             "options": {
-                "cwd": "${workspaceFolder}/LargeRobot"
+                "cwd": "${workspaceFolder}"
             },
-            "problemMatcher": {
-                "owner": "prosv5",
-                "fileLocation": [
-                    "relative",
-                    "${workspaceRoot}/LargeRobot"
-                ],
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            },
-            "group": "build"
-        },
-        {
-            "label": "Build Small Robot",
-            "type": "shell",
-            "command": "prosv5 make",
-            "options": {
-                "cwd": "${workspaceFolder}/SmallRobot"
-            },
-            "problemMatcher": {
-                "owner": "prosv5",
-                "fileLocation": [
-                    "relative",
-                    "${workspaceRoot}/SmallRobot"
-                ],
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "Upload Small Robot",
-            "type": "shell",
-            "command": "prosv5 upload",
-            "options": {
-                "cwd": "${workspaceFolder}/SmallRobot"
-            },
-            "problemMatcher": {
-                "owner": "prosv5",
-                "fileLocation": [
-                    "relative",
-                    "${workspaceRoot}/SmallRobot"
-                ],
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            },
-            "group": "build"
-        },
-        {
-            "label": "Run Terminal",
-            "type": "shell",
-            "command": "prosv5 terminal",
             "problemMatcher": {
                 "owner": "prosv5",
                 "fileLocation": [
@@ -128,63 +56,6 @@
                 }
             },
             "group": "build"
-        },
-        {
-            "label": "Upload Large Robot and Run Terminal",
-            "dependsOn": [
-                "Upload Large Robot",
-                "Run Terminal"
-            ],
-            "dependsOrder": "sequence",
-            "group": "build",
-            "problemMatcher": {
-                "owner": "prosv5",
-                "fileLocation": [
-                    "relative",
-                    "${workspaceRoot}/LargeRobot"
-                ],
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            }
-        },
-        {
-            "label": "Upload Small Robot and Run Terminal",
-            "dependsOn": [
-                "Upload Small Robot",
-                "Run Terminal"
-            ],
-            "dependsOrder": "sequence",
-            "group": "build",
-            "problemMatcher": {
-                "owner": "prosv5",
-                "fileLocation": [
-                    "relative",
-                    "${workspaceRoot}/SmallRobot"
-                ],
-                "pattern": {
-                    "regexp": "^(.*):(\\d+):(\\d+): +(warning|error): +(.*)",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
-                }
-            }
-        },
-        {
-            "label": "Build All",
-            "dependsOn": [
-                "Build Small Robot",
-                "Build Large Robot"
-            ],
-            "group": "build",
-            "problemMatcher": []
         }
     ]
 }
