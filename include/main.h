@@ -36,6 +36,10 @@
 
 #include "api.h"
 
+#include "chassis.h"
+#include "lift.h"
+#include "intake.h"
+
 /**
  * You should add more #includes here
  */
