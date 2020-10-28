@@ -3,14 +3,7 @@
 #include "ros_lib/std_msgs/String.h"
 
 
-/*
- * rosserial Publisher Example for VEX Cortex
- * Prints "hello world!"
- */
-
-
-
-// this loop is run in setup function, which publishes  at 50hz.
+/* Loop function */
 void loop(ros::NodeHandle & nh, ros::Publisher & p, std_msgs::String & str_msg, char* msgdata)
 {
   str_msg.data = msgdata;
@@ -24,7 +17,7 @@ void setup()
 {
   // debug logging
   // make a node handle object, string message, and publisher for that message.
-  ros::NodeHandle  nh;
+  ros::NodeHandle nh;
   std_msgs::String str_msg;
   ros::Publisher chatter("chatter\0", &str_msg);
 
