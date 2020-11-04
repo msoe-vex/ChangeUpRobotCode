@@ -56,7 +56,6 @@ void autonomous() {}
 void opcontrol() {
 	while (true) {
 		setup();
-
 		pros::delay(20);
 	}
 }

@@ -16,8 +16,8 @@ protected:
 public:
     V5Publisher();
 
-    virtual void addMessageHolder(ros::Publisher* pub, std::shared_ptr<T> msg) {
-        _messages.insert(std::pair<ros::Publisher*, T*>(pub, msg.get()));
+    virtual void addMessageHolder(ros::Publisher* pub, T* msg) {
+        _messages.insert(std::pair<ros::Publisher*, T*>(pub, msg));
     };
 
     virtual void loop(ros::NodeHandle& handle) {
