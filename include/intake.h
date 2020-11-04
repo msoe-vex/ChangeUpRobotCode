@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _INTAKE_H_
+#define _INTAKE_H_
 
 #include "api.h"
 
@@ -18,3 +19,5 @@ public:
 
   void pivot(int speed);
 };
+
+#endif

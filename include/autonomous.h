@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _AUTONOMOUS_H_ 
+#define _AUTONOMOUS_H_
 
 #include "api.h"
 
@@ -16,3 +17,5 @@ public:
 
   ~autonomous();
 };
+
+#endif

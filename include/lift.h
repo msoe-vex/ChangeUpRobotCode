@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _LIFT_H_
+#define _LIFT_H_
 
 #include "api.h"
 
@@ -14,3 +15,5 @@ public:
 
   ~lift();
 };
+
+#endif

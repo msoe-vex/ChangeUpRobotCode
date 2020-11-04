@@ -1,7 +1,8 @@
-#pragma once
+#ifndef _CONSTANTS_H_
+#define _CONSTANTS_H_
 
 #include "api.h"
 
-class constants {
+#define PUBLISH_DELAY_MS 20
 
-};
+#endif

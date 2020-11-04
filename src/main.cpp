@@ -1,10 +1,5 @@
 #include "main.h"
-
-chassis chassis(19, 2, 20, 1);
-
-lift lift(9, 8);
-
-intake intake(6, 5, 7);
+#include "ros_lib/rosserial_vex_v5/examples/helloworld.h"
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -12,9 +7,7 @@ intake intake(6, 5, 7);
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-void initialize() {
-	pros::lcd::initialize();
-}
+void initialize() {}
 
 /**
  * Runs while the robot is in the disabled state of Field Management System or
@@ -61,38 +54,8 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	pros::Controller master(pros::E_CONTROLLER_MASTER);
-	pros::Motor left_mtr(1);
-	pros::Motor right_mtr(2);
-
 	while (true) {
-		int left = master.get_analog(ANALOG_LEFT_Y);
-		int right = master.get_analog(ANALOG_RIGHT_Y);
-		chassis.setSpeed(left, right);
-
-		if (master.get_digital(DIGITAL_L1) == 1) {
-			lift.setSpeed(127);
-		} else if (master.get_digital(DIGITAL_L2) == 1) {
-			lift.setSpeed(-127);
-		} else {
-			lift.setSpeed(5);
-		}
-
-		if (master.get_digital(DIGITAL_R1) == 1) {
-			intake.setSpeed(127, 127);
-		} else if (master.get_digital(DIGITAL_R2) == 1) {
-			intake.setSpeed(-127, -127);
-		} else {
-			intake.setSpeed(0, 0);
-		}
-
-		if (master.get_digital(DIGITAL_X) == 1) {
-			intake.pivot(127);
-		} else if (master.get_digital(DIGITAL_B) == 1) {
-			intake.pivot(-127);
-		} else {
-			intake.pivot(0);
-		}
+		setup();
 
 		pros::delay(20);
 	}

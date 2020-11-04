@@ -1,36 +1,34 @@
-#include "inputNodes/controllerNode.h"
-#include "ros_lib/ros.h"
-#include "ros_lib/std_msgs/String.h"
+#include "RightDriveSensorNode.h"
 
+void RightDriveSensorNode::setup() {
+    // Create a new handle
+    ros::NodeHandle handle;
 
-/* Loop function */
-void loop(ros::NodeHandle & nh, ros::Publisher & p, std_msgs::String & str_msg, char* msgdata)
-{
-  str_msg.data = msgdata;
-  p.publish( &str_msg );
-  nh.spinOnce();
-  pros::c::delay(20);
-}
+    // Create a place in memory to hold our encoder position, and the corresponding topic
+    // to publish the value to
+    auto encoder_pos = std::make_shared<std_msgs::Int16>();
+    ros::Publisher pos_msg("RightDriveSensorPos", encoder_pos.get());
 
-// The setup function will start a publisher on the topic "chatter" and begin publishing there.
-void setup()
-{
-  // debug logging
-  // make a node handle object, string message, and publisher for that message.
-  ros::NodeHandle nh;
-  std_msgs::String str_msg;
-  ros::Publisher chatter("chatter\0", &str_msg);
+    // Create a place in memory to hold our encoder velocity, and the corresponding topic
+    // to publish the value to
+    auto encoder_vel = std::make_shared<std_msgs::Int16>();
+    ros::Publisher vel_msg("RightDriveSensorVel", encoder_vel.get());
 
-  // set up rosserial, and prepare to publish the chatter message 
-  nh.initNode();
-  nh.advertise(chatter);
+    // Initialize the handler, and set up data relating to what this node publishes
+    handle.initNode();
+    handle.advertise(pos_msg);
+    handle.advertise(vel_msg);
 
-  // message data variable.
-  char* msg = (char*) malloc(20 * sizeof(char));
-  while (1) {
+    // Add the corresponding publishers to the memory locations that hold their data
+    addMessageHolder(&pos_msg, encoder_pos);
+    addMessageHolder(&vel_msg, encoder_vel);
 
-    // send a message about the time!
-    sprintf(msg, "[%d] Hello there!!", (int) pros::c::millis());
-    loop(nh, chatter, str_msg, msg);
-  }
+    while (1) {
+        // Put our value(s) into memory where the publisher is told to look
+        encoder_pos->data = 0;
+        encoder_vel->data = 0;
+
+        // Run the publisher loop (automatically handles our wait loop)
+        loop(handle);
+    }
 }

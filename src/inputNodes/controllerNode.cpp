@@ -1,4 +1,4 @@
-#include "inputNodes/controllerNode.h"
+#include "ControllerNode.h"
 #include "ros_lib/ros.h"
 #include "ros_lib/std_msgs/String.h"
 
