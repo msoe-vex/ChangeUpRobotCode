@@ -1,5 +1,7 @@
 #include "main.h"
-#include "ros_lib/rosserial_vex_v5/examples/helloworld.h"
+#include "inputNodes/RightDriveSensorNode.h"
+
+RightDriveSensorNode* rightDriveSensorNode;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -7,7 +9,11 @@
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-void initialize() {}
+void initialize() {
+	// Initialize and set up nodes
+	rightDriveSensorNode = new RightDriveSensorNode();
+	rightDriveSensorNode->setup();
+}
 
 /**
  * Runs while the robot is in the disabled state of Field Management System or
@@ -38,7 +44,9 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+	// loop while in autonomous state
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -55,7 +63,9 @@ void autonomous() {}
  */
 void opcontrol() {
 	while (true) {
-		setup();
+		rightDriveSensorNode->publish();
+
+		// Delay to not hog the primary CPU
 		pros::delay(20);
 	}
 }

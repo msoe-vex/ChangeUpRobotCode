@@ -14,13 +14,11 @@ class V5Publisher {
 protected:
     std::map<ros::Publisher*, T*> _messages;
 public:
-    V5Publisher();
-
     virtual void addMessageHolder(ros::Publisher* pub, T* msg) {
         _messages.insert(std::pair<ros::Publisher*, T*>(pub, msg));
     };
 
-    virtual void loop(ros::NodeHandle& handle) {
+    virtual void publish(ros::NodeHandle& handle) {
         typename std::map<ros::Publisher*, T*>::iterator msg_itr;
 
         for (msg_itr = _messages.begin(); msg_itr != _messages.end(); msg_itr++) {

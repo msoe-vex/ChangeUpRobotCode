@@ -9,12 +9,15 @@
 
 class RightDriveSensorNode : public V5Publisher<std_msgs::Int16> {
 private:
+    ros::NodeHandle* _handle;
     std_msgs::Int16* _encoder_pos;
     std_msgs::Int16* _encoder_vel;
 public:
     RightDriveSensorNode();
 
     void setup();
+
+    void publish();
 
     ~RightDriveSensorNode();
 };
