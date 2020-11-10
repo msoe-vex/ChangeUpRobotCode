@@ -1,9 +1,7 @@
 #include "main.h"
 #include "inputNodes/RightDriveSensorNode.h"
-#include "inputNodes/leftDriveSensorNode.h"
 
 RightDriveSensorNode* rightDriveSensorNode;
-LeftDriveSensorNode* leftDriveSensorNode;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -15,8 +13,6 @@ void initialize() {
 	// Initialize and set up nodes
 	rightDriveSensorNode = new RightDriveSensorNode();
 	rightDriveSensorNode->setup();
-	leftDriveSensorNode = new LeftDriveSensorNode();
-	leftDriveSensorNode->setup();
 }
 
 /**
@@ -68,7 +64,6 @@ void autonomous() {
 void opcontrol() {
 	while (true) {
 		rightDriveSensorNode->publish();
-		leftDriveSensorNode->publish();
 
 		// Delay to not hog the primary CPU
 		pros::delay(20);
