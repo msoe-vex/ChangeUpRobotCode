@@ -12,6 +12,7 @@ private:
     ros::NodeHandle* _handle;
     std_msgs::Int16* _encoder_pos;
     std_msgs::Int16* _encoder_vel;
+    pros::Rotation* _encoder;
 public:
     LeftDriveSensorNode();
 

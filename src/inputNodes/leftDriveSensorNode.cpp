@@ -4,6 +4,7 @@ LeftDriveSensorNode::LeftDriveSensorNode() {
     _handle = new ros::NodeHandle();
     _encoder_pos = new std_msgs::Int16();
     _encoder_vel = new std_msgs::Int16();
+    _encoder = new pros::Rotation(1);
 }
 
 void LeftDriveSensorNode::setup() {
@@ -23,12 +24,14 @@ void LeftDriveSensorNode::setup() {
     // Add the corresponding publishers to the memory locations that hold their data
     addMessageHolder(&pos_msg, _encoder_pos);
     addMessageHolder(&vel_msg, _encoder_vel);
+
+    _encoder.reset_position();
 }
 
 void LeftDriveSensorNode::publish() {
     // Put our value(s) into memory where the publisher is told to look
-    _encoder_pos->data = 0;
-    _encoder_vel->data = 0;
+    _encoder_pos->data = _encoder.get_position();
+    _encoder_vel->data = _encoder.get_velocity();
 
     // Run the publisher loop (does not handle delay)
     V5Publisher::publish(*_handle);
@@ -38,4 +41,5 @@ LeftDriveSensorNode::~LeftDriveSensorNode() {
     delete _handle;
     delete _encoder_pos;
     delete _encoder_vel;
+    delete _encoder;
 }
