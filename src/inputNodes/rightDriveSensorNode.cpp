@@ -4,6 +4,9 @@ RightDriveSensorNode::RightDriveSensorNode() {
     _handle = new ros::NodeHandle();
     _encoder_pos = new std_msgs::Int16();
     _encoder_vel = new std_msgs::Int16();
+
+    // Run setup
+    // Add function to manager
 }
 
 void RightDriveSensorNode::setup() {
@@ -31,7 +34,7 @@ void RightDriveSensorNode::publish() {
     _encoder_vel->data = 0;
 
     // Run the publisher loop (does not handle delay)
-    V5Publisher::publish(*_handle);
+    V5Publisher::publish(*_handle); // TODO pull code down from V5Publisher
 } 
 
 RightDriveSensorNode::~RightDriveSensorNode() {
