@@ -1,5 +1,18 @@
 #include "RightDriveSensorNode.h"
 
+void rightDriveSensorNode_Publish() {
+    ros::NodeHandle handle();
+    std_msgs::Int16 encoderPosition();
+    std_msgs::Int16 encoderVelocity();
+
+    ros::Publisher positionMsg("RightDriveSensorPosition", &encoderPosition);
+    ros::Publisher velocityMsg("RightDriveSensorVelocity", &encoderVelocity);
+
+    handle.initNode();
+    handle.advertise(positionMsg);
+    handle.advertise(velocityMsg);
+}
+
 RightDriveSensorNode::RightDriveSensorNode() {
     _handle = new ros::NodeHandle();
     _encoder_pos = new std_msgs::Int16();
@@ -38,6 +51,7 @@ void RightDriveSensorNode::publish() {
 } 
 
 RightDriveSensorNode::~RightDriveSensorNode() {
+    delete _handle;
     delete _encoder_pos;
     delete _encoder_vel;
 }
