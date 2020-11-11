@@ -25,6 +25,7 @@ void LeftDriveSensorNode::setup() {
     addMessageHolder(&pos_msg, _encoder_pos);
     addMessageHolder(&vel_msg, _encoder_vel);
 
+    //reset the encoder position
     _encoder.reset_position();
 }
 
