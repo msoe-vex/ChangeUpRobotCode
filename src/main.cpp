@@ -14,9 +14,7 @@ LeftDriveSensorNode* leftDriveSensorNode;
 void initialize() {
 	// Initialize and set up nodes
 	rightDriveSensorNode = new RightDriveSensorNode();
-	rightDriveSensorNode->setup();
 	leftDriveSensorNode = new LeftDriveSensorNode();
-	leftDriveSensorNode->setup();
 }
 
 /**
