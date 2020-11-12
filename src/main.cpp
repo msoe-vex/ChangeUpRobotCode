@@ -1,7 +1,9 @@
 #include "main.h"
 #include "inputNodes/RightDriveSensorNode.h"
+#include "inputNodes/GameStateNode.h"
 
 RightDriveSensorNode* rightDriveSensorNode;
+GameStateNode* gameStateNode;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -13,6 +15,9 @@ void initialize() {
 	// Initialize and set up nodes
 	rightDriveSensorNode = new RightDriveSensorNode();
 	rightDriveSensorNode->setup();
+	gameStateNode = new GameStateNode();
+	gameStateNode->setup();
+
 }
 
 /**
@@ -64,6 +69,7 @@ void autonomous() {
 void opcontrol() {
 	while (true) {
 		rightDriveSensorNode->publish();
+		gameStateNode->publish();
 
 		// Delay to not hog the primary CPU
 		pros::delay(20);
