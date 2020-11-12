@@ -26,13 +26,13 @@ void LeftDriveSensorNode::setup() {
     addMessageHolder(&vel_msg, _encoder_vel);
 
     //reset the encoder position
-    _encoder.reset_position();
+    _encoder->reset_position();
 }
 
 void LeftDriveSensorNode::publish() {
     // Put our value(s) into memory where the publisher is told to look
-    _encoder_pos->data = _encoder.get_position();
-    _encoder_vel->data = _encoder.get_velocity();
+    _encoder_pos->data = _encoder->get_position();
+    _encoder_vel->data = _encoder->get_velocity();
 
     // Run the publisher loop (does not handle delay)
     V5Publisher::publish(*_handle);
