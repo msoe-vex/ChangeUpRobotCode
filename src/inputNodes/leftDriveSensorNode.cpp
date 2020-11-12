@@ -5,6 +5,8 @@ LeftDriveSensorNode::LeftDriveSensorNode() {
     _encoder_pos = new std_msgs::Int16();
     _encoder_vel = new std_msgs::Int16();
     _encoder = new pros::Rotation(1);
+
+    setup();
 }
 
 void LeftDriveSensorNode::setup() {
